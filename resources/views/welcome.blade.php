@@ -17,26 +17,30 @@
             </form>
     
             <h4 class="text-lg text-cente mb-4">Listado de etiquetas</h4>
-            <table>
-                @forelse ($tags as $tag)
-                <tr>
-                    <td class="border px-4 py-2">{{ $tag->name }}</td>
-                    <td class="px-4 py-2">
-                        <form action="tags/{{ $tag->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Eliminar" class="px-3 rounded bg-red-500 text-white">
-                        </form>
-                </tr>
-                    
-                @empty
+            
+                <table>
+                    @forelse ($tags as $tag)
                     <tr>
-                        <td>
-                            <p>No hay etiquetas</p>
-                        </td>
+                        <td class="border px-4 py-2 ">{{ $tag->name }}</td>
+                        <td class="border px-4 py-2 ">{{ $tag->slug }}</td>
+                        <td class="px-4 py-2">
+                            <form action="tags/{{ $tag->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Eliminar" class="px-3 rounded bg-red-500 text-white">
+                            </form>
                     </tr>
-                @endforelse
-            </table>
+                
+                        
+                    @empty
+                        <tr>
+                            <td>
+                                <p>No hay etiquetas</p>
+                            </td>
+                        </tr>
+                    @endforelse
+                </table>
+            
         </div>
     
     </body>
